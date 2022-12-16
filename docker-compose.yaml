@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+
+  hftdb:
+    image: postgres
+    networks:
+      - hftnet
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: denis
+      POSTGRES_PASSWORD: passw0rd
+
+  hftbackend:
+    image: maeddes/hftbackend:v1
+    networks:
+      - hftnet
+    environment:
+      SERVER_PORT: 8090
+      SPRING_DATASOURCE_URL: jdbc:postgresql://hftdb:5432/appdb
+    ports:
+      - 8090:8090
+
+networks:
+  hftnet:
+    name: hftnet
