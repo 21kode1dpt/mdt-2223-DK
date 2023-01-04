@@ -1,4 +1,4 @@
-package main.java.com.example.demo.jpa;
+package com.example.demo.jpa;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package main.java.com.example.demo;
+package com.example.demo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import org.springframework.http.HttpStatus;
 @RequestMapping("/old/todos")
 public class ToDoController {
 
-    private ArrayList<Todo> items = new ArrayList<Todo>();
+    private ArrayList<ToDo> items = new ArrayList<ToDo>();
 
     @Operation(summary = "Creates a Todo Item with path variable name and default priority of 2")
     @ApiResponses(value = {
@@ -33,9 +33,9 @@ public class ToDoController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{name}")
-    public Todo createAndAddTodoItem(@PathVariable String name) {
+    public ToDo createAndAddTodoItem(@PathVariable String name) {
 
-        Todo item = new Todo(name);
+        ToDo item = new ToDo(name);
         items.add(item);
 
         return item;
@@ -47,7 +47,7 @@ public class ToDoController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/")
-    public Todo addTodoItem(@RequestBody Todo item) {
+    public ToDo addTodoItem(@RequestBody ToDo item) {
 
         items.add(item);
         return item;
@@ -59,17 +59,17 @@ public class ToDoController {
             @ApiResponse(responseCode = "200", description = "List all items", content = @Content)
     })
     @ResponseStatus(HttpStatus.OK)
-    public List<Todo> getTodoItems() {
+    public List<ToDo> getTodoItems() {
 
         return items;
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(produces = "application/json", path = "/{itemId}")
-    Todo deleteTodoItem(@PathVariable String itemId) {
+    ToDo deleteTodoItem(@PathVariable String itemId) {
 
-        Todo tempItem = new Todo(itemId);
-        Iterator<Todo> iterator = items.iterator();
+        ToDo tempItem = new ToDo(itemId);
+        Iterator<ToDo> iterator = items.iterator();
 
         while (iterator.hasNext()) {
 

@@ -1,4 +1,4 @@
-package main.java.com.example.demo.jpa;
+package com.example.demo.jpa;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import com.example.demo.jpa.Todoitem;
 
 @RestController
 @RequestMapping("/todos/")
@@ -30,9 +31,9 @@ public class JpaController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{name}")
-    public TodoItem createAndAddTodoItem(@PathVariable String name) {
+    public Todoitem createAndAddTodoItem(@PathVariable String name) {
 
-        TodoItem item = new TodoItem(name);
+        Todoitem item = new Todoitem(name);
         todoItemRepository.save(item);
 
         return item;
@@ -49,7 +50,7 @@ public class JpaController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<TodoItem> findById(@PathVariable String id) {
+    public Optional<Todoitem> findById(@PathVariable String id) {
 
         return todoItemRepository.findById(id);
 
@@ -62,14 +63,14 @@ public class JpaController {
             @ApiResponse(responseCode = "200", description = "List all items", content = @Content)
     })
     @ResponseStatus(HttpStatus.OK)
-    public List<TodoItem> getTodoItems() {
+    public List<Todoitem> getTodoItems() {
 
         return todoItemRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(produces = "application/json", path = "/{itemId}")
-    TodoItem deleteTodoItem(@PathVariable String itemId) {
+    Todoitem deleteTodoItem(@PathVariable String itemId) {
 
         todoItemRepository.deleteById(itemId);
 

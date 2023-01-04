@@ -1,16 +1,16 @@
-package main.java.com.example.demo;
+package com.example.demo;
 
 import java.io.Serializable;
 
-public class Todo implements Serializable {
+public class ToDo implements Serializable {
 
     private String todo;
     private int priority = 2;
 
-    public Todo() {
+    public ToDo() {
     }
 
-    public Todo(String todo) {
+    public ToDo(String todo) {
 
         this.todo = todo;
 
@@ -45,7 +45,7 @@ public class Todo implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Todo other = (Todo) obj;
+        ToDo other = (ToDo) obj;
         if (todo == null) {
             if (other.todo != null)
                 return false;

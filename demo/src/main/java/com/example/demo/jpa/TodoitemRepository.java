@@ -1,7 +1,9 @@
-package main.java.com.example.demo.jpa;
+package com.example.demo.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TodoItemRepository extends JpaRepository<TodoItem, String> {
+import com.example.demo.jpa.Todoitem;
+
+public interface TodoItemRepository extends JpaRepository<Todoitem, String> {
 
 }
