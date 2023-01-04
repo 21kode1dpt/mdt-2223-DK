@@ -7,9 +7,16 @@ services:
     networks:
       - hftnet
     environment:
-      POSTGRES_DB: appdb
-      POSTGRES_USER: denis
+      POSTGRES_DB: tododb
+      POSTGRES_USER: matthias
       POSTGRES_PASSWORD: passw0rd
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+    volumes:
+      - postgres:/var/lib/postgresql/data/pgdata
+
+    ports:
+      - 5432:5432
 
   hftbackend:
     image: maeddes/hftbackend:v1
@@ -17,10 +24,14 @@ services:
       - hftnet
     environment:
       SERVER_PORT: 8090
-      SPRING_DATASOURCE_URL: jdbc:postgresql://hftdb:5432/appdb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://hftdb:5432/tododb
     ports:
       - 8090:8090
 
 networks:
   hftnet:
     name: hftnet
+
+volumes:
+  postgres:
+    name: postgres
